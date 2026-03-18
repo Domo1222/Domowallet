@@ -1,4 +1,18 @@
 // Display Current Date
+// 1. I-load ang balance mula sa memory ng browser, o gamitin ang default na 24500
+let currentBalance = parseFloat(localStorage.getItem('domowix_balance')) || 24500;
+
+// 2. Function para i-update ang display sa screen
+function updateBalanceDisplay() {
+    document.getElementById('total-balance').innerText = `₱ ${currentBalance.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+    localStorage.setItem('domowix_balance', currentBalance);
+}
+
+// 3. Tawagin ito agad pagload ng page
+updateBalanceDisplay();
+
+// 4. I-update ang Send Money function mo (Dagdagan mo ito sa loob ng transfer listener)
+// Halimbawa: currentBalance -= amount; updateBalanceDisplay();
 document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
 });
