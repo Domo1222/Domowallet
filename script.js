@@ -20,10 +20,25 @@ document.getElementById('current-date').innerText = new Date().toLocaleDateStrin
 // Transfer Logic
 document.getElementById('transfer-form').addEventListener('submit', function (e) {
     e.preventDefault();
+    
     const recipient = document.getElementById('recipient').value;
-    const amount = document.getElementById('amount').value;
+    const amount = parseFloat(document.getElementById('amount').value);
 
-    alert(`Success! Sent ₱${amount} to ${recipient}.`);
+    // 1. Check kung may sapat na pera
+    if (amount > currentBalance) {
+        return alert("Ops! Kulang ang balance mo para dito.");
+    }
+
+    // 2. Bawasan ang balance
+    currentBalance -= amount;
+
+    // 3. I-update ang display sa screen (yung 24,500)
+    updateBalanceDisplay();
+
+    // 4. Idagdag sa transaction history
+    addTransaction(recipient, amount, 'Transfer');
+
+    alert(`Success! Na-send na ang ₱${amount.toLocaleString()} kay ${recipient}.`);
     this.reset();
 });
 
@@ -85,7 +100,7 @@ async function initiatePayment() {
         headers: {
             accept: 'application/json',
             'Content-Type': 'application/json',
-            authorization: `Basic ${btoa(PAYMONGO_SECRET_KEY)}`
+            authorization: `Basic ${btoa(sk_test_p66vwGeCsBLWZii4fWs6oZy9)}`
         },
         body: JSON.stringify({
             data: {
