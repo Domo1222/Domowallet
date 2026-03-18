@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domowix | WalletApp Dashboard</title>
+    <link rel="stylesheet" href="Allowance.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>Domowix</h2>
+                <p>Wallet & Pay</p>
+            </div>
+            <ul>
+                <li class="active">My Account</li>
+                <li>Transactions</li>
+                <li id="pay-btn">Pay with PayMongo</li>
+                <li>Settings</li>
+                <li class="logout">Logout</li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <div class="user-info">
+                    <h1>Welcome back, Dominic James P.!</h1>
+                    <p id="current-date"></p>
+                </div>
+            </header>
+            <section class="history-section">
+                <div class="history-header">
+                    <h3>Recent Transactions</h3>
+                    <button class="view-all">View All</button>
+                </div>
+                <div class="transaction-table-wrapper">
+                    <table class="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Recipient</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mar 18, 2026</td>
+                                <td>Dale Jenson</td>
+                                <td>Transfer</td>
+                                <td class="neg">- ₱500.00</td>
+                                <td><span class="status success">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Mar 17, 2026</td>
+                                <td>PayMongo Top-up</td>
+                                <td>Deposit</td>
+                                <td class="pos">+ ₱2,000.00</td>
+                                <td><span class="status success">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="balance-card">
+                <p class="label">Total Balance</p>
+                <div class="amount">₱ 24,500.00</div>
+                <div class="card-details">
+                    <p class="account-name">Dominic James Payoyo Supan</p>
+                    <p class="account-number">**** **** **** 4290</p>
+                </div>
+            </section>
+
+            <section class="actions">
+                <div class="action-box">
+                    <h3>Transfer Money</h3>
+                    <form id="transfer-form">
+                        <input type="text" id="recipient" placeholder="Recipient Name" required>
+                        <input type="text" id="account-num" placeholder="Account Number" required>
+                        <input type="number" id="amount" placeholder="Amount (₱)" required>
+                        <button type="submit" class="btn-send">Send Money</button>
+                    </form>
+                </div>
+
+                <div class="action-box">
+                    <h3>Quick Actions</h3>
+                    <div class="recent-contacts">
+                        <div class="contact" onclick="fillContact('Dale Jenson')">Dale</div>
+                        <div class="contact" onclick="fillContact('Js')">Js</div>
+                        <div class="contact" onclick="fillContact('Ador')) ">Ador</div>
+                    </div>
+                    <hr>
+                    <div class="paymongo-section">
+                        <p>Powered by <strong>PayMongo</strong></p>
+                        <button class="btn-paymongo" onclick="initiatePayment()">Top Up via PayMongo</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="history">
+                <h3>Recent Transactions</h3>
+                <div class="history-list" id="transaction-list">
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
